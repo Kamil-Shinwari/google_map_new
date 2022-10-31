@@ -10,9 +10,11 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:googlemap/screens/homepage.dart';
+import 'package:googlemap/screens/navigationBarScreen.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
@@ -173,6 +175,7 @@ class _UploadPageState extends State<UploadPage> {
     // Mydata()
     getnewData();
     getlatlong().then((value) async {
+       getdata();
       details.text = "Public";
       // latlng.add(LatLng(value.latitude, value.longitude));
       latlng.add(LatLng(value.latitude, value.longitude));
@@ -194,9 +197,10 @@ class _UploadPageState extends State<UploadPage> {
           target: LatLng(value.latitude, value.longitude), zoom: 14);
       GoogleMapController controller = await _controller.future;
       controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+      getdata();
       setState(() {});
     });
- getdata();
+
   }
 
   TextEditingController title1 = TextEditingController();
@@ -210,7 +214,7 @@ class _UploadPageState extends State<UploadPage> {
         child: Column(children: [
           Container(
             color: Colors.blue,
-            height: 300,
+            height: 300.h,
             child: GoogleMap(
                 myLocationButtonEnabled: true,
                 // myLocationEnabled: true,
@@ -228,16 +232,16 @@ class _UploadPageState extends State<UploadPage> {
           ),
           Container(
             color: Colors.black,
-            height: 60,
+            height: 60.h,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              padding:  EdgeInsets.symmetric(horizontal: 20.0.w),
               child: Row(children: [
                 Text(
                   widget.distance == 0 ? "0.0 Km" : "${widget.distance} km",
                   style: TextStyle(color: Colors.white),
                 ),
                 SizedBox(
-                  width: 10,
+                  width: 10.w,
                 ),
                 Text(
                   widget.time==0? "0.00 min":widget.time.toString(),
@@ -259,7 +263,7 @@ class _UploadPageState extends State<UploadPage> {
                   child: Column(
                     children: [
                       SizedBox(
-                        height: 20,
+                        height: 20.h,
                       ),
                       TextField(
                         controller: title1,
@@ -267,7 +271,7 @@ class _UploadPageState extends State<UploadPage> {
                             label: Text(
                           "title",
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18),
+                              fontWeight: FontWeight.bold, fontSize: 18.sp),
                         )),
                       ),
                       SizedBox(
@@ -278,7 +282,7 @@ class _UploadPageState extends State<UploadPage> {
                         decoration: InputDecoration(
                             label: Text(
                           "Description",
-                          style: TextStyle(fontSize: 18),
+                          style: TextStyle(fontSize: 18.sp),
                         )),
                       ),
                       Column(
@@ -286,7 +290,7 @@ class _UploadPageState extends State<UploadPage> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
+                            padding: EdgeInsets.only(left: 8.0.h),
                             child: InkWell(
                                 onTap: () async {
                                   // var pickedfiles = await imgpicker.pickMultiImage();
@@ -298,7 +302,7 @@ class _UploadPageState extends State<UploadPage> {
                                 )),
                           ),
                           SizedBox(
-                            height: 10,
+                            height: 10.h,
                           ),
                           Align(
                             alignment: Alignment.centerLeft,
@@ -307,8 +311,8 @@ class _UploadPageState extends State<UploadPage> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 8.0),
                                   child: Container(
-                                    height: 40,
-                                    width: 120,
+                                    height: 40.h,
+                                    width: 120.w,
                                     decoration: BoxDecoration(
                                         border: Border.all(
                                             color: Colors.deepOrange)),
@@ -334,7 +338,7 @@ class _UploadPageState extends State<UploadPage> {
                                             color: Colors.deepOrange,
                                           )),
                                           SizedBox(
-                                            width: 10,
+                                            width: 10.w,
                                           ),
                                           Center(
                                               child: Text(
@@ -342,7 +346,7 @@ class _UploadPageState extends State<UploadPage> {
                                             style: TextStyle(
                                                 color: Colors.deepOrange,
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: 20),
+                                                fontSize: 20.sp),
                                           )),
                                         ],
                                       ),
@@ -350,7 +354,7 @@ class _UploadPageState extends State<UploadPage> {
                                   ),
                                 ),
                                 SizedBox(
-                                  width: 10,
+                                  width: 10.w,
                                 ),
                                 Text(
                                   " ${image != null ? "image selected" : "No Image"}",
@@ -362,7 +366,7 @@ class _UploadPageState extends State<UploadPage> {
                         ],
                       ),
                       SizedBox(
-                        height: 20,
+                        height: 20.h,
                       ),
                       TextField(
                         controller: details,
@@ -370,11 +374,11 @@ class _UploadPageState extends State<UploadPage> {
                             label: Text(
                           "Visibility",
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18),
+                              fontWeight: FontWeight.bold, fontSize: 18.sp),
                         )),
                       ),
                       SizedBox(
-                        height: 20,
+                        height: 20.h,
                       ),
                       TextField(
                         decoration: InputDecoration(
@@ -384,28 +388,28 @@ class _UploadPageState extends State<UploadPage> {
                         )),
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8.0, vertical: 10),
+                        padding:  EdgeInsets.symmetric(
+                            horizontal: 8.0.w, vertical: 10.h),
                         child: GestureDetector(
                           onTap: () {
-                            Navigator.push(
+                            Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => MyHomePage(),
+                                  builder: (context) => NavigationBarScreen(),
                                 ));
                           },
                           child: Container(
                             width: double.infinity,
-                            height: 50,
+                            height: 50.h,
                             decoration: BoxDecoration(
                                 color: Colors.grey,
-                                borderRadius: BorderRadius.circular(10)),
+                                borderRadius: BorderRadius.circular(10.r)),
                             child: Center(
                                 child: Text(
                               "Delete",
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 20,
+                                  fontSize: 20.sp,
                                   fontWeight: FontWeight.bold),
                             )),
                           ),
@@ -424,11 +428,11 @@ class _UploadPageState extends State<UploadPage> {
               onTap: () async {
                 String url =
                     await uploadImageToDatabase(image: image!, uid: uuid.v1());
-                await FirebaseFirestore.instance
-                    .collection('user')
-                    .doc(FirebaseAuth.instance.currentUser!.uid)
+                 FirebaseFirestore.instance
+                    
                     .collection('History')
                     .add({
+                  "uid":FirebaseAuth.instance.currentUser!.uid,
                   "newlat": widget.newLat,
                   "newlng": widget.newlng,
                   "url": url,
@@ -448,15 +452,17 @@ class _UploadPageState extends State<UploadPage> {
                       widget.distance!.toString() + "" + ' meters',
                 })
                 .then((value) async {
+                  
                   double dis = snap!.get("totalDistance");
                   var newDis = double.parse(widget.distance!);
                   var totalDistan = dis + newDis;
-                  // var istTime=snap!.get("totalTime");
+                  var istTime=snap!.get("totalTime");
                   // var timeToDouble=int.parse(istTime);
                   // var totalTim=istTime+timeToDouble;
-                  setState(() {
-                    rideCount++;
+                  rideCount++;
                     photos++;
+                  setState(() {
+                    
                   });
                   await FirebaseFirestore.instance
                       .collection("userDetails")
@@ -464,6 +470,7 @@ class _UploadPageState extends State<UploadPage> {
                       .update({
                     // "totalTime":totalTim,
                     "totalDistance": totalDistan,
+                    // "totalDistance"
                     "phots": photos,
                     "rides": rideCount
                   }).then((value) async {
@@ -475,14 +482,15 @@ class _UploadPageState extends State<UploadPage> {
                       "date":DateTime.now(),
 
                      }).then((value) {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePage(),));
+                      
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => NavigationBarScreen(),));
                      });
                   });
                 });
               },
               child: Container(
                   width: double.infinity,
-                  height: 50,
+                  height: 50.h,
                   decoration: BoxDecoration(
                       color: Colors.deepOrange,
                       borderRadius: BorderRadius.circular(20)),

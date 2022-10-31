@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:googlemap/screens/login.dart';
+import 'package:googlemap/screens/navigationBarScreen.dart';
 
 import '../utils/colors.dart';
 import 'adminlogin.dart';
@@ -87,7 +88,7 @@ class SignUp extends StatelessWidget {
                            "location":"",
                          }).then((value) => Fluttertoast.showToast(msg: 'User created successfuly'));
                      Navigator.pop(context);
-                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MyHomePage()));
+                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>NavigationBarScreen()));
                    }
 
                  }catch(e){

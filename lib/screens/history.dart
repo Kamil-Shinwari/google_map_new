@@ -20,9 +20,9 @@ class _HistoryState extends State<History> {
 
   getHistory() async {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-        .collection('user')
-        .doc(FirebaseAuth.instance.currentUser!.uid)
+        
         .collection('History')
+        .where("uid",isEqualTo: FirebaseAuth.instance.currentUser!.uid)
         .get();
     if (querySnapshot.docs.isEmpty) {
       Fluttertoast.showToast(msg: 'No data to show');
@@ -58,9 +58,9 @@ class _HistoryState extends State<History> {
     return Scaffold(
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
-            .collection("user")
-            .doc(FirebaseAuth.instance.currentUser!.uid)
+            
             .collection("History")
+            .where("uid",isEqualTo: FirebaseAuth.instance.currentUser!.uid)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {

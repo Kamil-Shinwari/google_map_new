@@ -253,6 +253,20 @@ class _ShowingDetailsState extends State<ShowingDetails> {
               ),
             ),
           ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal:40.0),
+          child: InkWell(
+            onTap: (){
+              Navigator.pop(context);
+            },
+            child: Container(height: 50,width: double.infinity,
+            decoration: BoxDecoration(color: Colors.blue.shade300,
+            borderRadius: BorderRadius.circular(20)
+            ),
+            child: Center(child: Text("Back",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),)),
+            ),
+          ),
         )
       ],
     ));

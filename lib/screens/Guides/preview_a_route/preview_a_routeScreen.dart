@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
 class previewRouteScreens extends StatelessWidget {
@@ -17,8 +18,8 @@ class previewRouteScreens extends StatelessWidget {
                   'Naviagating routes in the app is easy! Find routes using the FIND sections,or plan your own using the route planner, available in this app or on ridewithgps.com',
               image: Image.asset(
                 "assets/pview1.png",
-                width: 500,
-                height: 500,
+                width: 500.w,
+                height: 500.h,
               ),
               //getPageDecoration, a method to customise the page style
               decoration: getPageDecoration(),
@@ -133,10 +134,10 @@ class previewRouteScreens extends StatelessWidget {
           skip:
               const Text("Skip", style: TextStyle(fontWeight: FontWeight.w600)),
           next: Padding(
-            padding: const EdgeInsets.only(left:50.0),
+            padding: EdgeInsets.only(left:50.0.h),
             child: Container(
-              width: 70,
-              height: 30,
+              width: 70.w,
+              height: 30.h,
               decoration: BoxDecoration(
                   color: Colors.deepOrange,
                   borderRadius: BorderRadius.circular(20)),
@@ -170,11 +171,11 @@ class previewRouteScreens extends StatelessWidget {
 
   //method to customise the page style
   PageDecoration getPageDecoration() {
-    return const PageDecoration(
-      imagePadding: EdgeInsets.symmetric(vertical: 12, horizontal: 10),
+    return  PageDecoration(
+      imagePadding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 10.w),
       imageFlex: 3,
       titleTextStyle: TextStyle(
-          color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+          color: Colors.white, fontSize: 20.sp, fontWeight: FontWeight.bold),
       pageColor: Color(0xff424242),
       // bodyPadding: EdgeInsets.only(top: 8, left: 20, right: 20),
       // titlePadding: EdgeInsets.only(top: 50),
@@ -184,13 +185,13 @@ class previewRouteScreens extends StatelessWidget {
 
   //method to customize the dots style
   DotsDecorator getDotsDecorator() {
-    return const DotsDecorator(
+    return DotsDecorator(
       spacing: EdgeInsets.symmetric(horizontal: 2),
       activeColor: Colors.indigo,
       color: Colors.grey,
       activeSize: Size(12, 5),
       activeShape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(25.0)),
+        borderRadius: BorderRadius.all(Radius.circular(25.0.r)),
       ),
     );
   }

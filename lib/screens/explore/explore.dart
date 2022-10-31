@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 // import 'package:geocoder/geocoder.dart';
@@ -93,11 +94,11 @@ TextEditingController searchc=TextEditingController();
           polylines:_polyline,
         ),
         Positioned(
-            top: 40,
-            left: 30,
-            right: 30,
+            top: 40.h,
+            left: 30.w,
+            right: 30.w,
             child: Container(
-              height: 45,
+              height: 45.h,
               color: Colors.white,
               child: TextField(
                 onTap: (){
@@ -114,13 +115,13 @@ TextEditingController searchc=TextEditingController();
                       hintText: "Search By City Name", border: OutlineInputBorder())),
             )),
         Positioned(
-          bottom: 40,
+          bottom: 40.h,
           left: 0,
           right: 0,
           child:query==""?
           Container(
-            width: 350,
-            height: 160,
+            width: 350.w,
+            height: 160.h,
             child: StreamBuilder(
                 stream: FirebaseFirestore.instance
                     .collection('Routes')
@@ -186,8 +187,8 @@ TextEditingController searchc=TextEditingController();
               // log("clicked");
             },
                child: Container(
-                width: 350,
-                height: 160,
+                width: 350.w,
+                height: 160.h,
                 child: StreamBuilder(
                     stream: FirebaseFirestore.instance
                         .collection('Routes')
@@ -258,37 +259,37 @@ class MyContainerListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 140,
-      width: 275,
+      height: 140.h,
+      width: 275.w,
       decoration: BoxDecoration(
           color: Colors.white,
           border: Border.all(width: 1),
-          borderRadius: BorderRadius.circular(20)),
+          borderRadius: BorderRadius.circular(20.r)),
       child: Row(children: [
         Expanded(
             flex: 1,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              padding:  EdgeInsets.symmetric(horizontal: 8.0.w),
               child: Container(
                 decoration:
-                    (BoxDecoration(borderRadius: BorderRadius.circular(20))),
+                    (BoxDecoration(borderRadius: BorderRadius.circular(20.r))),
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
-                        height: 10,
+                        height: 10.h,
                       ),
                       Text(
                         title,
                         style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
+                            fontSize: 16.sp, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 10.h,
                       ),
                       Text(title),
                       SizedBox(
-                        height: 10,
+                        height: 10.h,
                       ),
                       Text(RideDeparted)
                     ]),

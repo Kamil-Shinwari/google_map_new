@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
 class LiveLoggingScreens extends StatelessWidget {
@@ -17,8 +18,8 @@ class LiveLoggingScreens extends StatelessWidget {
                   'Live logging is a great way to share your real time location with friends and faimly. As Long as you are in cellular data range, the app will broadcast your progress, allowing the people you care about to follow on thier phone or computer',
               image: Image.asset(
                 "assets/live1.png",
-                width: 500,
-                height: 500,
+                width: 500.w,
+                height: 500.h,
               ),
               //getPageDecoration, a method to customise the page style
               decoration: getPageDecoration(),
@@ -69,8 +70,8 @@ class LiveLoggingScreens extends StatelessWidget {
           skip:
               const Text("Skip", style: TextStyle(fontWeight: FontWeight.w600)),
           next: Container(
-            width: 70,
-            height: 30,
+            width: 70.w,
+            height: 30.h,
             decoration: BoxDecoration(
                 color: Colors.deepOrange,
                 borderRadius: BorderRadius.circular(20)),

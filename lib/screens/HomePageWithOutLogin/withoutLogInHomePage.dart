@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:googlemap/screens/draw_Route/draw_a_route.dart';
+import 'package:googlemap/screens/homepage.dart';
 import 'package:googlemap/screens/login.dart';
 import 'package:googlemap/screens/signup.dart';
 
@@ -18,12 +21,12 @@ class _WithOutLogInHomeScreenState extends State<WithOutLogInHomeScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
         SizedBox(
-          height: 30,
+          height: 30.h,
         ),
         Container(
           width: double.infinity,
           color: Colors.black,
-          height: 50,
+          height: 50.h,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20),
             child: Text(
@@ -31,76 +34,88 @@ class _WithOutLogInHomeScreenState extends State<WithOutLogInHomeScreen> {
               style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  fontSize: 22),
+                  fontSize: 22.sp),
             ),
           ),
         ),
-        Card(
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
+        InkWell(
+          onTap: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePage(),));
+          },
+          child: Card(
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      Container(
+                        width: 150.w,
+                                    height: 200.h,
+                                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage("assets/path.jpg"),
+                            colorFilter: ColorFilter.mode(
+                                Colors.black.withOpacity(0.3), BlendMode.darken),
+                            fit: BoxFit.cover),
+                        borderRadius: BorderRadius.circular(15.r)),
+                      child: Icon(Icons.adjust,size: 55.sp,color: Colors.white,),
+                                  ),
+                                   SizedBox(height: 10.h,),
+                  Text("Record a Ride",style: TextStyle(fontSize: 22.sp),),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: 10.w,
+                ),
+                Column(
                   children: [
-                    Container(
-                      width: 150,
-                                  height: 200,
-                                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage("assets/path.jpg"),
-                          colorFilter: ColorFilter.mode(
-                              Colors.black.withOpacity(0.3), BlendMode.darken),
-                          fit: BoxFit.cover),
-                      borderRadius: BorderRadius.circular(15)),
-                    child: Icon(Icons.search,size: 55,color: Colors.white,),
-                                ),
-                                 SizedBox(height: 10,),
-                Text("Record a Ride",style: TextStyle(fontSize: 22),),
+                    InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => MapsRoutesExample(title: ""),));
+                      },
+                      child: Container(
+                        width: 150.w,
+                        height: 200.h,
+                        decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage("assets/path2.jpg"),
+                            fit: BoxFit.cover,
+                            colorFilter: ColorFilter.mode(
+                                Colors.black.withOpacity(0.3), BlendMode.darken)),
+                        borderRadius: BorderRadius.circular(15.r),
+                        ),
+                        child: Icon(Icons.share_location,color: Colors.white,size: 50,),
+                        
+                      ),
+                    ),
+                    SizedBox(height: 10.h,),
+                   Text("Explore Routes",style: TextStyle(fontSize: 22),), 
                   ],
                 ),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              Column(
-                children: [
-                  Container(
-                    width: 150,
-                    height: 200,
-                    decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage("assets/path2.jpg"),
-                        fit: BoxFit.cover,
-                        colorFilter: ColorFilter.mode(
-                            Colors.black.withOpacity(0.3), BlendMode.darken)),
-                    borderRadius: BorderRadius.circular(15)),
-                    
-                  ),
-                  SizedBox(height: 10,),
-                 Text("Explore Routes",style: TextStyle(fontSize: 22),), 
-                ],
-              ),
-            ],
+              ],
+            ),
           ),
         ),
-        SizedBox(height: 10,),
+        SizedBox(height: 10.h),
         Padding(
-          padding: const EdgeInsets.only(left:8.0),
+          padding:  EdgeInsets.only(left:8.0.w),
           
           child: Text("Gain Access",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
         ),
-        Card(child: Container(height: 70,child: Row(
+        Card(child: Container(height: 70.h,child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: const EdgeInsets.only(left:15.0),
+              padding:  EdgeInsets.only(left:15.0.w),
               child: Text("Log into Sync Your rides, see your ,\n stats enable sharing and more "),
             ),
-            CircleAvatar(child: Icon(Icons.person,color: Colors.white,size: 40,))
+            CircleAvatar(child: Icon(Icons.person,color: Colors.white,size: 40.sp,))
         ]),)),
 
 
-             Card(child: Container(height: 70,child: Row(
+             Card(child: Container(height: 70.h,child: Row(
           // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
@@ -109,31 +124,31 @@ class _WithOutLogInHomeScreenState extends State<WithOutLogInHomeScreen> {
                 onTap: (){
                   Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp(),));
                 },
-                child: Text("Sign In",style: TextStyle(color: Colors.deepOrange,fontSize: 20),)),
+                child: Text("Sign In",style: TextStyle(color: Colors.deepOrange,fontSize: 20.sp),)),
             ),
-            SizedBox(width: 15,),
+            SizedBox(width: 15.w,),
            InkWell(
             onTap: (){
               Navigator.push(context, MaterialPageRoute(builder: (context) => Login(),));
             },
-            child: Text("Log In",style: TextStyle(color: Colors.deepOrange,fontSize: 20),)),
+            child: Text("Log In",style: TextStyle(color: Colors.deepOrange,fontSize: 20.sp),)),
         ]),)),
 
-         SizedBox(height: 10,),
+         SizedBox(height: 10.h,),
         Padding(
           padding: const EdgeInsets.only(left:8.0),
           
-          child: Text("Open Shortcut",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+          child: Text("Open Shortcut",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18.sp),),
 
         ),
-        Card(child: Container(height: 70,child: Row(
+        Card(child: Container(height: 70.h,child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: const EdgeInsets.only(left:15.0),
+              padding: EdgeInsets.only(left:15.0.h),
               child: Text("use shortcut to access a shareed,\n tour , event , or route "),
             ),
-            CircleAvatar(child: Icon(Icons.qr_code,size: 40,))
+            CircleAvatar(child: Icon(Icons.qr_code,size: 40.sp,))
         ]),)),
       ]),
     );

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_routes/google_maps_routes.dart';
 import 'package:googlemap/screens/MyHomePagee.dart';
@@ -11,6 +12,7 @@ import 'package:googlemap/screens/login.dart';
 import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
  var x1=Uuid();
+ String? add;
  DateTime? now = DateTime. now();
 class MapsRoutesExample extends StatefulWidget {
   const MapsRoutesExample({Key? key, required this.title}) : super(key: key);
@@ -32,7 +34,7 @@ class _MapsRoutesExampleState extends State<MapsRoutesExample> {
    List<Marker> markers = [];
    getDistance() {
     setState(() {
-      totalDistance = drawRoute();
+      // totalDistance = drawRoute();
     });
    }
   
@@ -50,13 +52,15 @@ String formattedDate = DateFormat("yyyy-MM-dd"). format(now!);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text("draw a Route"),),
       body: Stack(
         children: [
           Align(
             alignment: Alignment.center,
             child: GoogleMap(
+              zoomGesturesEnabled: true,
               myLocationButtonEnabled: true,
-              // myLocationEnabled: true,
+              myLocationEnabled: true,
               onTap: (LatLng latLng) async{
                 
                 var x2=latLng;
@@ -81,6 +85,7 @@ String formattedDate = DateFormat("yyyy-MM-dd"). format(now!);
                   "name":FirebaseAuth.instance.currentUser!.displayName,
                   "title":formattedDate,
                   "uid":FirebaseAuth.instance.currentUser!.uid,
+                  "address":""
                 });
                 setState(() {
                   
@@ -107,10 +112,7 @@ String formattedDate = DateFormat("yyyy-MM-dd"). format(now!);
               id++;
               setState(()async {
                 points.add(LatLng(latLng.latitude, latLng.longitude));
-                if(points.length >=2) {
-              drawRoute();
-              // Future.delayed(Duration(seconds: 4),() =>  Navigator.push(context, MaterialPageRoute(builder:(context) => Login(),)),);
-                }
+                
                 
               });
               },
@@ -119,7 +121,7 @@ String formattedDate = DateFormat("yyyy-MM-dd"). format(now!);
               zoomControlsEnabled: false,
               polylines: route.routes,
               initialCameraPosition: const CameraPosition(
-                zoom: 15.0,
+                zoom: 14.0,
                 target: LatLng(40.715888142250016, -73.99345738955843),
               ),
               onMapCreated: (GoogleMapController controller) {
@@ -128,12 +130,12 @@ String formattedDate = DateFormat("yyyy-MM-dd"). format(now!);
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8.0.h),
             child: Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                  width: 200,
-                  height: 50,
+                  width: 200.w,
+                  height: 50.h,
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(15.0)),
@@ -144,23 +146,31 @@ String formattedDate = DateFormat("yyyy-MM-dd"). format(now!);
                   )),
             ),
           ),
-          // Positioned(
-          //   top: 160,
-          //   left: 0,
-          //   right: 0,
-          //   bottom: 570,
-          //   child: Container(
-          //   width: 30,
-          //   height: 30,
-          //   decoration: BoxDecoration(shape: BoxShape.circle,color: Colors.red),
-          //   child: Icon(Icons.menu,color: Colors.white,))),
+          
         ],
       ),
+      floatingActionButton: FloatingActionButton(onPressed: () async{
+        if(points.length >=2) {
+             add= await   drawRoute();
+            
+              FirebaseFirestore.instance.collection("Routes")
+                .doc(x5.toString())
+                .update({
+                  "address":add,
+                });
+                setState(() {
+                  
+                });
+            
+            log("address is "+add!);
+              // Future.delayed(Duration(seconds: 4),() =>  Navigator.push(context, MaterialPageRoute(builder:(context) => Login(),)),);
+                }
+      },child: Text("draws"),),
     );
   }
 
 
-  drawRoute() async{
+ Future<String> drawRoute() async{
     // var x=TravelModes.driving;
        await route.drawRoute(points, 'Test routes',
               Color.fromRGBO(130, 78, 210, 1.0), googleApiKey,
@@ -169,5 +179,6 @@ String formattedDate = DateFormat("yyyy-MM-dd"). format(now!);
             totalDistance =
                 distanceCalculator.calculateRouteDistance(points, decimals: 1);
           });
+          return totalDistance;
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:googlemap/screens/HomePageWithOutLogin/withoutLogInHomePage.dart';
 import 'package:googlemap/screens/MyHomePagee.dart';
 import 'package:googlemap/screens/draw_Route/draw_a_route.dart';
+import 'package:googlemap/screens/explore/explore.dart';
 import 'package:googlemap/screens/exploreDemo_HomeScreen.dart';
 import 'package:googlemap/screens/history.dart';
 import 'package:googlemap/screens/homepage.dart';
@@ -31,10 +32,10 @@ const List<Color> lightBackgroundaGradient = [
 ];
 const List<Widget> screens=[
          MyHomePagee(),
-          MapsRoutesExample(title: ""),
+        // MapsRoutesExample(title: ""),
            MyHomePage(),
            History(),
-          SettingScreen()
+          MyMoreScreen()
 ];
 
 // const List<Widget> screens2=[

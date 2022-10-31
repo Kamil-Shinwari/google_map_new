@@ -47,28 +47,31 @@ class AdminLogin extends StatelessWidget {
                 ),
               ), onPressed: ()async{
 
-                if(emailController.text!=null && passwordController.text!=null){
+                if(emailController.text=="admin" && passwordController.text=="admin123"){
                   try{
                     showDialog(context: context, builder: (context){
                       return Center(child: CircularProgressIndicator(color: Colors.red,),);
                     });
-                    UserCredential usercred = await FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text);
-                    if(usercred.user!=null){
-                     QuerySnapshot query = await FirebaseFirestore.instance.collection('admin').where('uid',isEqualTo: FirebaseAuth.instance.currentUser!.uid).get();
-                     if(query.docs.length>0){
+                    // UserCredential usercred = await FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text);
+                    // if(usercred.user!=null){
+                    //  QuerySnapshot query = await FirebaseFirestore.instance.collection('admin').where('uid',isEqualTo: FirebaseAuth.instance.currentUser!.uid).get();
+                    //  if(query.docs.length>0){
                        Navigator.pop(context);
                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>AdminPanel()));
-                     }
-                     else{
-                       Navigator.pop(context);
-                       FirebaseAuth.instance.signOut();
-                       Fluttertoast.showToast(msg: 'Wrong Admin Credientials!');
-                     }
-                      }
+                    //  }
+                    //  else{
+                    //    Navigator.pop(context);
+                    //    FirebaseAuth.instance.signOut();
+                    //    Fluttertoast.showToast(msg: 'Wrong Admin Credientials!');
+                    //  }
+                    
+                      // }
                   }catch(e){
                     Navigator.pop(context);
                     Fluttertoast.showToast(msg:e.toString());
                   }
+                }else{
+                  Fluttertoast.showToast(msg: "Wrong email or password");
                 }
 
               }),

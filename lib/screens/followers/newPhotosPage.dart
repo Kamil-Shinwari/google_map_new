@@ -1,31 +1,33 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:googlemap/utils/colors.dart';
 
-class PhotosPage extends StatefulWidget {
-  const PhotosPage({super.key});
+class newPhotoPage extends StatefulWidget {
+  final String? id;
+
+  const newPhotoPage({super.key, this.id});
 
   @override
-  State<PhotosPage> createState() => _PhotosPageState();
+  State<newPhotoPage> createState() => _newPhotoPageState();
 }
 
-class _PhotosPageState extends State<PhotosPage> {
+class _newPhotoPageState extends State<newPhotoPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          // appBar: AppBar(title: Text("Photos")),
+          appBar: AppBar(title: Text("Photos")),
           body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection("user")
-            .doc(FirebaseAuth.instance.currentUser!.uid)
+            .doc(widget.id)
             .collection("History")
             .snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return new Text('Error: ${snapshot.error}');
+            return CircularProgressIndicator();
           } else {
             return Padding(
               padding: const EdgeInsets.all(10.0),

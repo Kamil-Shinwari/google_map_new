@@ -37,7 +37,7 @@ class _NavigationBarScreenState extends State<NavigationBarScreen> {
   Widget build(BuildContext context) {
     // Provider.of<UserDetailProvider>(context).getData();
     return DefaultTabController(
-      length: 5,
+      length: 4,
       child: Scaffold(
         
         body: PageView(
@@ -47,7 +47,7 @@ class _NavigationBarScreenState extends State<NavigationBarScreen> {
           children:screens,
         ),
         bottomNavigationBar: Container(
-          decoration: BoxDecoration(border: Border(top: BorderSide(color: Colors.grey.shade400,width: 1))),
+          decoration: BoxDecoration(border: Border(top: BorderSide(color: Colors.grey.shade400,width: 1),),),
           child: TabBar(
 
             indicator: BoxDecoration(border: Border(top: BorderSide(color: activeCyanColor,width: 4))),
@@ -62,15 +62,9 @@ class _NavigationBarScreenState extends State<NavigationBarScreen> {
                   Icon(Icons.home_outlined,color: currentindex==0?activeCyanColor:Colors.black,),
                  
             ),
+           
             Tab(
-              
-              child: 
-                  Icon(Icons.search,color: currentindex==1?activeCyanColor:Colors.black),
-                  
-                
-            ),
-            Tab(
-              child: Icon(Icons.recommend_rounded,color: currentindex==2?activeCyanColor:Colors.black),
+              child: Icon(Icons.adjust_outlined,color: currentindex==2?activeCyanColor:Colors.black),
             ),
             Tab(
               child: Icon(Icons.my_library_add,color: currentindex==3?activeCyanColor:Colors.black),

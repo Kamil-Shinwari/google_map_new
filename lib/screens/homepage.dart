@@ -16,9 +16,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:googlemap/screens/draw_Route/draw_a_route.dart';
 import 'package:googlemap/screens/history.dart';
 import 'package:googlemap/screens/login.dart';
-import 'package:googlemap/screens/provider/count_provider.dart';
-import 'package:googlemap/screens/provider/count_provider.dart';
 import 'package:googlemap/screens/settings/uploadPage.dart';
+
 import 'package:googlemap/screens/webview.dart';
 import 'package:googlemap/utils/colors.dart';
 import 'package:image_picker/image_picker.dart';
@@ -173,7 +172,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int x = 0;
   @override
   Widget build(BuildContext context) {
-    final countProvider = Provider.of<CountProvider>(context);
+    // final countProvider = Provider.of<CountProvider>(context);
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(

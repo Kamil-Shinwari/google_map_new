@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:googlemap/screens/settings/widgets/mySettingWidgets.dart';
 class AccountSettingScreen extends StatefulWidget {
   const AccountSettingScreen({super.key});
@@ -41,7 +42,7 @@ class accountCards extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.only(left: 8, top: 8),
         width: double.infinity,
-        height: 80,
+        height: 80.h,
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Align(
               alignment: Alignment.topLeft,
@@ -55,10 +56,10 @@ class accountCards extends StatelessWidget {
           Text(
             "$subTitle",
             style: TextStyle(
-                color: Colors.black87,  fontSize: 16,fontWeight: FontWeight.w600),
+                color: Colors.black87,  fontSize: 16.sp,fontWeight: FontWeight.w600),
           ),
           SizedBox(
-            height: 8,
+            height: 8.h,
           ),
           Text(
             "$desc ",
@@ -85,7 +86,7 @@ class accountSettingWidget extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal:8.0),
         child: Container(
-          height: 80,
+          height: 80.h,
           child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

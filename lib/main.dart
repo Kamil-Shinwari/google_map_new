@@ -2,10 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:googlemap/screens/HomePageWithOutLogin/withoutLogInHomePage.dart';
 import 'package:googlemap/screens/MyHomePagee.dart';
 import 'package:googlemap/screens/MyProfile_setting/profile_detail_page.dart';
 import 'package:googlemap/screens/MyProfile_setting/profile_setting.dart';
+import 'package:googlemap/screens/adminlogin.dart';
 import 'package:googlemap/screens/adminpanel.dart';
 import 'package:googlemap/screens/draw_Route/draw_a_route.dart';
 import 'package:googlemap/screens/draw_a_polyline.dart';
@@ -18,7 +20,7 @@ import 'package:googlemap/screens/login.dart';
 import 'package:googlemap/screens/navigationBarScreen.dart';
 import 'package:googlemap/screens/paractice/ontap_add_marker.dart';
 import 'package:googlemap/screens/polyline.dart';
-import 'package:googlemap/screens/provider/count_provider.dart';
+// import 'package:googlemap/screens/provider/count_provider.dart';
 import 'package:googlemap/screens/settings/MorePage.dart';
 import 'package:googlemap/screens/settings/uploadPage.dart';
 import 'package:googlemap/screens/signup.dart';
@@ -63,9 +65,12 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
 
-    return ChangeNotifierProvider(
-      create: (context) => CountProvider(),
-      child: MaterialApp(
+    return ScreenUtilInit(
+      designSize: const Size(360, 690),
+    minTextAdapt: true,
+    splitScreenMode: true,
+    builder: (context, child) => 
+       MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
@@ -86,10 +91,10 @@ class _MyAppState extends State<MyApp> {
                   return AdminPanel();
                 }
                 else if(FirebaseAuth.instance.currentUser!=null && querySnapshot.docs.length<=0){
-                  return NavigationBarScreen();
+                  return Login();
                 }
                 else{
-                  return WithOutLogInHomeScreen();
+                  return NavigationBarScreen();
                 }
               }
               else if(FirebaseAuth.instance.currentUser!=null){
@@ -106,7 +111,7 @@ class _MyAppState extends State<MyApp> {
                 ),
               );
             }
-    
+        
           },
         ):Login(),
           //AdminPanel():
